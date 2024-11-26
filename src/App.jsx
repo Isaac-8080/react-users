@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Users from './components/Users';
+import UsersForm from './components/UsersForm';
 
 function App() {
 
@@ -16,13 +17,12 @@ function App() {
 
   return (
     <>
-      
-      <Users users={users} />
 
+      <div className='flex flex-col h-[100dvh] w-full items-center justify-center'>
+        <UsersForm />
+        <Users users={users} />
+      </div>
 
-      {/* {users.map((user, index) => <p key={index}>{user.email}</p>)}
-      {users.map((user, index) => <p key={index}>{user.gen}</p>)}
-      */}
     </> 
   )
 }

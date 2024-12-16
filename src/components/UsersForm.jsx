@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { MdEmail, MdPerson, MdGroup } from 'react-icons/md'
 import {v4 as uuid} from 'uuid';
 
-const UsersForm = (props) => {
+const UsersForm = ({users, setUsers}) => {
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,7 +28,11 @@ const UsersForm = (props) => {
 
       const formValues = {name, email, gen, id: uuid()}
       
-      props.setUsers([...props.users, formValues])
+      setUsers([...users, formValues])
+
+      setName("")
+      setEmail("")
+      setGen("")
 
     }
 
@@ -47,7 +51,7 @@ const UsersForm = (props) => {
 
           <label className="input input-bordered flex items-center gap-2">
             <MdEmail className="h-4 w-4 opacity-70" />
-            <input type="text" value={email} onChange={handleEmail} className="grow" placeholder="Email" />
+            <input type="email" value={email} onChange={handleEmail} className="grow" placeholder="Email" />
           </label>
 
           <label className="input input-bordered flex items-center gap-2">

@@ -1,22 +1,29 @@
 import { useState } from 'react'
 import Users from './components/Users';
 import UsersForm from './components/UsersForm';
-import {v4 as uuid} from 'uuid';
-
 
 function App() {
 
-  const [users, setUsers] = useState([
-    {name :" user1", email : "user1@email.com", gen : "male", id : uuid()},
-    {name : "user2", email : "user2@email.com", gen : "female", id : uuid()},
-  ])  
+  const [users, setUsers] = useState([])
+
+  console.log(users);
+  
+  const handleDelete = (id) => {
+    setUsers(users.filter((user) => user.id !== id))
+  }
+
+  const handleEdit = (id, editInfo) => {
+    setUsers(users.map((user) => user.id === id ? editInfo : user))
+  }
 
   return (
     <>
 
       <div className='flex justify-center'>
         <UsersForm setUsers={setUsers} users={users} />
-        <Users users={users} />
+        <div className='flex flex-col gap-3 p-10 w-[30%]'>
+          <Users users={users} handleDelete={handleDelete} handleEdit={handleEdit} />
+        </div>
       </div>
 
     </> 
